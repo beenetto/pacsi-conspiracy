@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>jQuery Slot Machine</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="google-site-verification" content="d58Et_hG0KrLc6xKv03J8U5NA6jqak0kCFxBaz7Y1MM" /> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='slotmachine/css/app.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Slot Machine</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#example1">Simple</a></li>
+                    <li><a href="#example2">Specify numbers</a></li>
+                    <li><a href="#example6">Images</a></li>
+                    <li><a href="#example8">Sounds</a></li>
+                    <li><a href="#example10">Marks</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://paypal.me/kang7000/10">Buy Me a Coffee</a></li>
+                    <li><a href="https://github.com/momokang/slotmachine">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Example 4 - Easing</div>
+            <div class="panel-body">
+                <div class="slotwrapper" id="example4">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li class="text-danger">7</li>
+                    </ul>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li class="text-danger">7</li>
+                    </ul>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li class="text-danger">7</li>
+                    </ul>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success btn-lg" id="btn-example4">Start Spin!</button>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='slotmachine/js/slotmachine.min.js') }}"></script>
+
+    <script type="text/javascript">
+       
+        $('#btn-example4').click(function() {
+            $('#example4 ul').playSpin({
+                easing: 'easeOutBack'
+            });
+        });
+
+        var sound = new Audio("{{ url_for('static', filename='slotmachine/ringtones/spinning.mp3') }}");
+        var ding = new Audio("{{ url_for('static', filename='slotmachine/ringtones/ding.wav') }}");
+        // Loop of playing sound
+        sound.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+
+    </script>
+</body>
+</html>
